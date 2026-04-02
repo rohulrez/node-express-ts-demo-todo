@@ -1,5 +1,3 @@
-import { error } from 'node:console';
-import { text } from 'node:stream/consumers';
 
 interface Todo {
   id: number;
@@ -17,7 +15,7 @@ export function addTodo(text: string) {
 export function getTodo(id: number) {
   const todo = TODOS.find((t) => t.id === id);
   if (!todo) {
-    throw error('Todo not found!!!');
+    throw new Error('Todo not found!!')
   }
 
   return todo;
@@ -28,7 +26,7 @@ export function getTodos() {
 }
 
 export function removeTodo(id: number) {
-  TODOS = TODOS.filter((t) => t.id === id);
+  TODOS = TODOS.filter((t) => t.id !== id);
 }
 
 export function updateTodo(id: number, text: string) {

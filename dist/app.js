@@ -8,4 +8,7 @@ const todo_js_1 = __importDefault(require("./routes/todo.js"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(todo_js_1.default);
+app.use((err, req, res, next) => {
+    res.status(500).json({ message: 'An error occurred!' });
+});
 app.listen(3000);

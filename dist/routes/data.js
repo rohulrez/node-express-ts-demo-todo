@@ -5,7 +5,6 @@ exports.getTodo = getTodo;
 exports.getTodos = getTodos;
 exports.removeTodo = removeTodo;
 exports.updateTodo = updateTodo;
-const node_console_1 = require("node:console");
 let TODOS = [];
 function addTodo(text) {
     const newTodo = { id: Math.random(), text };
@@ -15,7 +14,7 @@ function addTodo(text) {
 function getTodo(id) {
     const todo = TODOS.find((t) => t.id === id);
     if (!todo) {
-        throw (0, node_console_1.error)('Todo not found!!!');
+        throw new Error('Todo not found!!');
     }
     return todo;
 }
@@ -23,7 +22,7 @@ function getTodos() {
     return TODOS;
 }
 function removeTodo(id) {
-    TODOS = TODOS.filter((t) => t.id === id);
+    TODOS = TODOS.filter((t) => t.id !== id);
 }
 function updateTodo(id, text) {
     const todo = getTodo(id);
